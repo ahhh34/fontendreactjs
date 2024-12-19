@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { push } from "connected-react-router";
 
+
 // import * as actions from "../store/actions";
 import * as actions from "../../store/actions";
+import { handleLoginApi } from "../../services/userService";
 
 import './Login.scss';
 import { FormattedMessage } from 'react-intl';
@@ -34,10 +36,12 @@ class Login extends Component {
         // console.log(event.target.value)
     }
 
-    handleLogin = () => {
+    handleLogin = async () => {
 
         console.log('usernam:' + this.state.username, 'password:' + this.state.password)
         console.log(this.state)
+        await handleLoginApi(this.state.username, this.state.password)
+
 
     }
 
