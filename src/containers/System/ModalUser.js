@@ -19,7 +19,7 @@ class ModalUser extends Component {
     toggle = () => {
         this.props.toggleFormParent()
     }
-
+    ///
 
     componentDidMount() {
     }
@@ -43,7 +43,7 @@ class ModalUser extends Component {
     }
 
     handleAddNewUser = () => {
-        let isValid=this.isValid
+        let isValid = this.isValid
         console.log('data modal ', this.state)
 
     }
