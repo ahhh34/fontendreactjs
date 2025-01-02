@@ -3,6 +3,7 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import './UserManage.scss';
 import { getAllUsers } from '../../services/userService';
+import ModalUser from './ModalUser';
 class UserManage extends Component {
 
     /**
@@ -22,8 +23,8 @@ class UserManage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            arrUsers: []
-
+            arrUser: [],
+            isOpenModalUser: false
         }
     }
 
@@ -38,6 +39,18 @@ class UserManage extends Component {
         console.log('get user from node.js: ', response)
     }
 
+    handleAddNewUser = () => {
+        this.setState({
+            isOpenModalUser: true,
+
+        })
+    }
+    toggleUserModal = () => {
+        this.setState({
+            isOpenModalUser: !this.state.isOpenModalUser,
+
+        })
+    }
 
     render() {
         console.log('check reder ', this.state)
@@ -45,8 +58,22 @@ class UserManage extends Component {
 
         return (
             <div className="users-container">
+                <ModalUser
+                    isOpen={this.state.isOpenModalUser}
+                    test={'abc'}
+                    toggleFormParent={this.toggleUserModal}
+
+                >
+
+                </ModalUser>
                 <div className='title text-center'>
                     manage users with thien
+                </div>
+                <div className='mx-1'>
+                    <button className='btn btn-primary px-3' onClick={() => this.handleAddNewUser()}>
+                        <i className='fas fa-plus'></i>
+                        add new user
+                    </button>
                 </div>
                 <div className='users-table mt-3 mx-1'>
                     <table id="customers">
